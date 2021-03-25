@@ -665,6 +665,7 @@
               "createdDateTime": "2021-02-01T19:53:02.5647158Z",
               "id": "cf095ce771dfd834f53fca554df4052588d9e24bb06f1975115b1cb7a4603319"
             }
+          {
         ],
         "scope": "env",
         "name": "Microsoft Graph Security Events",
