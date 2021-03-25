@@ -11,7 +11,7 @@ Use cases :
 
 For any questions or comments/bugs please reach out to me at alexandre@argeris.net or aargeris@cisco.com
 
-![image](./img/Screen Shot casebook.png)
+![image](./img/Screen_Shot_casebook.png)
 <br/>
 
 # Main workflows:
@@ -20,7 +20,7 @@ For any questions or comments/bugs please reach out to me at alexandre@argeris.n
 
 This workflow will fetch Duo FRAUD logs detail from a Duo Fraud Email alert and Deny logs every 1hour. Detail will be parse to create a casebook and sigthings in SecureX platform. 
   
-![image](./img/Screen Shot workflow.png)
+![image](./img/Screen_Shot_workflow.png)
 <br/>  
 
 # Prerequisites:
