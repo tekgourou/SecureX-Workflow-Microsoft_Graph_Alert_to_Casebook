@@ -1,6 +1,6 @@
 # Microsoft Graph Security Events (including MCAS) to Cisco SecureX create Casebook
 
-Create SecureX Casebook and Sigthings based on Cisco Secure Access by Duo Auth DENIED or FRAUD logs.
+Create SecureX Casebook base on Microsoft Graph Security Events (including MCAS).
 
 Use cases : 
   - Track compromised Azure AD accounts
@@ -16,9 +16,9 @@ For any questions or comments/bugs please reach out to me at alexandre@argeris.n
 
 # Main workflows:
 
-- Events - Cisco Secure Access Fraud _ Deny auth.json  
+- Events - Microsoft Graph Security.json from this repo
 
-This workflow will fetch Duo FRAUD logs detail from a Duo Fraud Email alert and Deny logs every 1hour. Detail will be parse to create a casebook and sigthings in SecureX platform. 
+This workflow will fetch Microsoft Graph Security Events every 1hour. Detail will be parse to create a casebook SecureX platform and identifying observables when possible.
   
 ![image](./img/Screen_Shot_workflow.png)
 <br/>  
@@ -26,17 +26,11 @@ This workflow will fetch Duo FRAUD logs detail from a Duo Fraud Email alert and 
 # Prerequisites:
 Refence for best practice and documentation https://ciscosecurity.github.io/sxo-05-security-workflows/
 
-- Create an Admin API application in Duo and save the credentials.
-    https://duo.com/docs/adminapi
-    
-- Copy these credentials into Cisco SecureX Orchestration variable section:
+- Create a Azure Entreprise Application (https://docs.microsoft.com/en-us/azure/active-directory/manage-apps/what-is-application-managemen)
+-     
+- Copy the credentials Tenant ID, Client ID, Client Secret into Cisco SecureX Orchestration variable section:
 
-  - Admin Integration Key (iKey), Host as a string variables [duo_admin_ikey], [duo_host]
-  - Admin Secret Key (sKey) as a Secure string variable [duo_admin_skey]
-
-- From the Duo Admin portal, configure Fraud Email Alert to be send to your IMAP account
-![image](./img/Screen_Shot_duo_email_fraud_alert.png)
-
+  - variables [Azure_Tenant ID], [Azure clientid], [Azure client_secret]
 
 - Create (2) Azure Target based on the hostname in the Cisco SecureX Orchestration. 
 
@@ -51,20 +45,22 @@ Refence for best practice and documentation https://ciscosecurity.github.io/sxo-
   - Proxy: Ignore Proxy  
 
 
-# Import these workflows into SecureX Orchestration as atomic workflows:
+# Import these workflows into SecureX Orchestration as Atomic actions:
   
 - Threat Response v2 - Generate Access Token.json from https://github.com/CiscoSecurity/sxo-05-security-workflows/tree/Main/Atomics
   
-  This Atomic workflow action will get CTR access token.
+  This Atomic action will get CTR access token.
 
 - Threat Response v2 - Create Casebook.json from https://github.com/CiscoSecurity/sxo-05-security-workflows/tree/Main/Atomics
   
-  This Atomic workflow actions will create Casebook.  
+  This Atomic action will create Casebook.  
   
-- Duo Admin - Get DENIED or FRAUD Auth Logs.json from this repo
-  
-  This Atomic workflow action will fetch Duo auth denied and fraud logs.
+-  Azure Graph - Get Access Token.json from https://github.com/CiscoSecurity/sxo-05-security-workflows/tree/Main/Atomics  
+
+- This Atomic action will fetch Azure token.
 
 
 # References 
-  https://docs.microsoft.com/en-us/graph/api/resources/alert?view=graph-rest-1.0
+https://docs.microsoft.com/en-us/graph/security-concept-overview  
+https://docs.microsoft.com/en-us/graph/api/resources/alert?view=graph-rest-1.0
+https://docs.microsoft.com/en-us/graph/permissions-reference
