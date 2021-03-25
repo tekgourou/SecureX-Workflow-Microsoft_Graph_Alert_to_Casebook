@@ -18,7 +18,7 @@ For any questions or comments/bugs please reach out to me at alexandre@argeris.n
 
 - Events - Microsoft Graph Security.json from this repo
 
-This workflow will fetch Microsoft Graph Security Events every 1hour. Detail will be parse to create a casebook SecureX platform and identifying observables when possible.
+This workflow will fetch Microsoft Graph Security Events every 1hour. Detail will be parse to create a casebook in SecureX platform and identifying observables when possible.
   
 ![image](./img/Screen_Shot_workflow.png)
 <br/>  
