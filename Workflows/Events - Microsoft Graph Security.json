@@ -622,7 +622,7 @@
     "variable_01JFV6LDS7L9U3EIQg0vjnhzRP7PmMEA0Pb": {
       "unique_name": "variable_01JFV6LDS7L9U3EIQg0vjnhzRP7PmMEA0Pb",
       "properties": {
-        "value": "dfdbdc50-0ec5-45ce-b9c7-c54c9351e474",
+        "value": "",
         "scope": "global",
         "name": "Azure Tenant ID",
         "type": "datatype.string",
@@ -646,7 +646,7 @@
     "variable_01JFVH0T4SXO63PxYdYV5WFVdikwsvuGtC1": {
       "unique_name": "variable_01JFVH0T4SXO63PxYdYV5WFVdikwsvuGtC1",
       "properties": {
-        "value": "00c1b811-4906-417f-b463-606f7e9056b3",
+        "value": "",
         "scope": "global",
         "name": "Azure AD clientid",
         "type": "datatype.string",
@@ -665,193 +665,6 @@
               "createdDateTime": "2021-02-01T19:53:02.5647158Z",
               "id": "cf095ce771dfd834f53fca554df4052588d9e24bb06f1975115b1cb7a4603319"
             }
-          },
-          {
-            "column_data": {
-              "createdDateTime": "2021-02-01T19:51:07.1735185Z",
-              "id": "19127dacf36ba8f75eef0f91483fe727d2b574d3d860ad910f765913dcea391f"
-            }
-          },
-          {
-            "column_data": {
-              "createdDateTime": "2021-02-01T19:43:25.0207051Z",
-              "id": "0460a42e55e985af18a54f3bc869f65c21d59811bb9d50ebd0910b22ac739781"
-            }
-          },
-          {
-            "column_data": {
-              "createdDateTime": "2021-02-01T19:49:30.709802Z",
-              "id": "4889ce75cd9b7ef97362d93f2d21e25f74856a243a890dd5633118016622f8f1"
-            }
-          },
-          {
-            "column_data": {
-              "createdDateTime": "2021-02-01T18:18:12.261326Z",
-              "id": "2aa4bdf865ad2638eab9e3858d5588b0eed99e62c88afb2a00a21e10cc2274b1"
-            }
-          },
-          {
-            "column_data": {
-              "createdDateTime": "2021-02-01T17:54:20.0141532Z",
-              "id": "2623fd05073f053fd758bc530403f6c8915302c8ac3588d589f80918bf8376be"
-            }
-          },
-          {
-            "column_data": {
-              "createdDateTime": "2021-01-27T23:44:43.9523608Z",
-              "id": "d6e48e582fd04cea9724245d9a937c854e6911f6ffc9088c2f4e18de26ebc35a"
-            }
-          },
-          {
-            "column_data": {
-              "createdDateTime": "2021-02-03T21:25:58.7656825Z",
-              "id": "510deae523def56d05247f1cdd14c8b4f7a0b766e5b50de4989b05e18a237e02"
-            }
-          },
-          {
-            "column_data": {
-              "createdDateTime": "2021-02-04T09:23:12.46Z",
-              "id": "6204c2e0bbb1c7869b31cd0127e9e809624ccc05816fe1774762b28ea254e33e"
-            }
-          },
-          {
-            "column_data": {
-              "createdDateTime": "2021-02-04T22:05:38.1375691Z",
-              "id": "e8477b55ef77892c7bd3addb3594cc9de3661166ddea59135412600afa38287c"
-            }
-          },
-          {
-            "column_data": {
-              "createdDateTime": "2021-02-04T22:05:22.6207008Z",
-              "id": "89e88c0ca49317173f185b3113ae59bfb75f1e8245b0c83f118b0ea3051f1ed3"
-            }
-          },
-          {
-            "column_data": {
-              "createdDateTime": "2021-02-04T22:05:49.6071136Z",
-              "id": "17dca4324cf9155cd53df354530c055ec1d137060278a559b23e22681c3075ac"
-            }
-          },
-          {
-            "column_data": {
-              "createdDateTime": "2021-02-04T22:05:52.7277185Z",
-              "id": "3452d3c7b618000f41fe1a40cf90c4ccfaeb68e10f41b1db588d4d1ea2d22d16"
-            }
-          },
-          {
-            "column_data": {
-              "createdDateTime": "2021-02-04T22:04:56.1564945Z",
-              "id": "88cfdcb4270ec913a1df184c044b9e9bcba231e71e7d493b4f94e7a4d38abfed"
-            }
-          },
-          {
-            "column_data": {
-              "createdDateTime": "2021-02-04T22:04:49.418335Z",
-              "id": "baff83075b21c9e8ba2ffbb41b51aa3a5c9990897d838119b0916446c8329200"
-            }
-          },
-          {
-            "column_data": {
-              "createdDateTime": "2021-02-04T22:05:27.1066051Z",
-              "id": "1b19b2a8cfcf7ba22173a0c4aefdee2ad8f79ad7fcf3d604d93c96638c0bdf91"
-            }
-          },
-          {
-            "column_data": {
-              "createdDateTime": "2021-02-04T22:02:45.4528008Z",
-              "id": "1920b2d755998b76f542199fb078613c043f8393a0b5fb0e620afb822ba47fd8"
-            }
-          },
-          {
-            "column_data": {
-              "createdDateTime": "2021-02-04T22:01:14.3813702Z",
-              "id": "2b489928bd90a355cd011bab4fdb847b970a783bf774929a6619261b3685cbf2"
-            }
-          },
-          {
-            "column_data": {
-              "createdDateTime": "2021-02-05T09:38:42.534Z",
-              "id": "4de6b9e205fce209bcdf04a5e260b5e9572a3012712263ffc37d01f934448cc9"
-            }
-          },
-          {
-            "column_data": {
-              "createdDateTime": "2021-02-04T22:02:45.452Z",
-              "id": "805ADCF0-0144-3118-B024-80BBBF6CC9AC"
-            }
-          },
-          {
-            "column_data": {
-              "createdDateTime": "2021-02-04T22:08:57.723Z",
-              "id": "BC9A4460-125F-32BE-8337-85D811FDB34A"
-            }
-          },
-          {
-            "column_data": {
-              "createdDateTime": "2021-02-04T22:08:57.723Z",
-              "id": "98697C4C-BD92-3C7D-BFC7-E4388443583F"
-            }
-          },
-          {
-            "column_data": {
-              "createdDateTime": "2021-02-17T06:54:25.786Z",
-              "id": "FAAB2777-6744-345E-9D55-9C920EF52FF7"
-            }
-          },
-          {
-            "column_data": {
-              "createdDateTime": "2021-02-23T15:56:31.3849946Z",
-              "id": "c62ba9c84ba517d0a74f681f921466392a69674d3e5f378b7fcaf1760d05dfd8"
-            }
-          },
-          {
-            "column_data": {
-              "createdDateTime": "2021-02-24T13:26:05Z",
-              "id": "5FC7BAB3-04DB-3162-90D2-E07CB10752FF"
-            }
-          },
-          {
-            "column_data": {
-              "createdDateTime": "2021-02-24T19:02:23.6548276Z",
-              "id": "cd9dd86946558c9eae040816462d8c145134efc46de8e621c4cdf631d3510f60"
-            }
-          },
-          {
-            "column_data": {
-              "createdDateTime": "2021-03-18T12:28:29Z",
-              "id": "6C1B68A2-44D9-3E43-AE8E-E168EBBE48CA"
-            }
-          },
-          {
-            "column_data": {
-              "createdDateTime": "2021-03-15T20:18:23Z",
-              "id": "DEFD527B-ABF2-32DF-8DF5-BFA92B04AEBD"
-            }
-          },
-          {
-            "column_data": {
-              "createdDateTime": "2021-03-10T07:32:43Z",
-              "id": "82DA103C-288F-39F8-A6AE-C36BEE7BE22B"
-            }
-          },
-          {
-            "column_data": {
-              "createdDateTime": "2021-03-23T13:02:31Z",
-              "id": "1454B839-F7F1-3B39-ABD2-A911D8642F47"
-            }
-          },
-          {
-            "column_data": {
-              "createdDateTime": "2021-03-24T07:14:30Z",
-              "id": "AAF796CA-4D04-354B-B246-82CE1C588F95"
-            }
-          },
-          {
-            "column_data": {
-              "createdDateTime": "2021-03-25T07:37:15Z",
-              "id": "09A7C757-CECE-396E-A0E6-DE246A57B01A"
-            }
-          }
         ],
         "scope": "env",
         "name": "Microsoft Graph Security Events",
