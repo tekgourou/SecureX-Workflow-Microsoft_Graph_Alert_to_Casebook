@@ -1,0 +1,891 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01JNLK7TV4T9453gtbcU6ClkJaMzRzx4B5X",
+    "name": "Events - Microsoft Graph Security",
+    "title": "Events - Microsoft Graph Security",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "user",
+          "type": "datatype.string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01M36RRO01Q710pimCwtvn64Zh3lEHcTsGA",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "notes",
+          "type": "datatype.string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01M36RCQIUR0I0Gc1f44HOZOhYtIpcjciFb",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "observables",
+          "type": "datatype.string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01M36F4CWJ91Z5HEkumeEUJkQqexl44SLjX",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "display_name": "Events - Microsoft Graph Security",
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "execute_on_target_group": true,
+        "target_group": {
+          "target_group_id": "target_group_01EJ0TQWPQWBD0qiWqClJKj9FOzwiZRfOFH",
+          "run_on_all_targets": false,
+          "selected_target_types": [
+            "web-service.endpoint"
+          ],
+          "use_criteria": {
+            "choose_target_using_algorithm": "choose_first_with_matching_criteria",
+            "conditions": [
+              {
+                "operator": "eq",
+                "left_operand": "$targetgroup.web-service endpoint.input.display_name$",
+                "right_operand": "CTR_For_Access_Token"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01JNLKO9VW4UQ5eqtOxbokvhdFTfdXEE3dG",
+        "name": "Azure Graph - Get Access Token",
+        "title": "Azure Graph - Get Access Token",
+        "type": "workflow.atomic_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Azure Graph - Get Access Token",
+          "input": {
+            "variable_workflow_01HQN7N4UOTC65YnWUlkyv9piykyDJH4Mzv": "$global.variable_01JFV6LDS7L9U3EIQg0vjnhzRP7PmMEA0Pb.global.variable_01JFV6LDS7L9U3EIQg0vjnhzRP7PmMEA0Pb$",
+            "variable_workflow_01HQN7N4UOZF02zDbu04b5YjKRJg26v2t0h": "$global.variable_01JFVH0T4SXO63PxYdYV5WFVdikwsvuGtC1.global.variable_01JFVH0T4SXO63PxYdYV5WFVdikwsvuGtC1$",
+            "variable_workflow_01HQN7N4UP0LT0TAyszgX3beksLoKgFl92K": "$global.variable_01JFVGETYFSLP5AvbmxSSUh4cusqoXzk3KJ.global.variable_01JFVGETYFSLP5AvbmxSSUh4cusqoXzk3KJ$"
+          },
+          "runtime_user": {
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target_group_criteria": true,
+            "target_group": {
+              "run_on_all_targets": false,
+              "use_criteria": {
+                "choose_target_using_algorithm": "choose_first_with_matching_criteria",
+                "conditions": [
+                  {
+                    "left_operand": "$targetgroup.web-service endpoint.input.display_name$",
+                    "operator": "eq",
+                    "right_operand": "Azure_For_Access_Token"
+                  }
+                ]
+              }
+            }
+          },
+          "workflow_id": "definition_workflow_01HQN7N57GLKN780LTDUabTblE3OpMPQVfx"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01M372GCGIX6Q255aAqe4zEVJmLla2sjIKk",
+        "name": "HTTP Request",
+        "title": "GET Microsoft Graph security events",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "Authorization",
+              "value": "Bearer $activity.definition_activity_01JNLKO9VW4UQ5eqtOxbokvhdFTfdXEE3dG.output.variable_workflow_01HQN7N4UOY2Q02vRhF0zXjAJoPNBVNKV9Q$"
+            }
+          ],
+          "display_name": "GET Microsoft Graph security events",
+          "method": "GET",
+          "relative_url": "/security/alerts",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target_group_criteria": true,
+            "target_group": {
+              "use_criteria": {
+                "choose_target_using_algorithm": "choose_first_with_matching_criteria",
+                "conditions": [
+                  {
+                    "left_operand": "$targetgroup.web-service endpoint.input.display_name$",
+                    "operator": "eq",
+                    "right_operand": "Azure_Graph_API"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01M29S35GXW8I4wLhO3qdZln3qcHWUj4lZi",
+        "name": "Read Table from JSON",
+        "title": "Create events table",
+        "type": "corejava.read_table_from_json",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Create events table",
+          "input_json": "$activity.definition_activity_01M372GCGIX6Q255aAqe4zEVJmLla2sjIKk.output.response_body$",
+          "jsonpath_query": "$.value",
+          "persist_output": false,
+          "populate_columns": false,
+          "skip_execution": false,
+          "table_columns": [
+            {
+              "column_name": "id",
+              "column_type": "string"
+            },
+            {
+              "column_name": "category",
+              "column_type": "string"
+            },
+            {
+              "column_name": "createdDateTime",
+              "column_type": "string"
+            },
+            {
+              "column_name": "description",
+              "column_type": "string"
+            },
+            {
+              "column_name": "userStates",
+              "column_type": "string"
+            },
+            {
+              "column_name": "title",
+              "column_type": "string"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01M29XV5I7BF567YboLQtSTqVf7yw33nr78",
+        "name": "For Each",
+        "title": "For Each",
+        "type": "logic.for_each",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": true,
+          "display_name": "For Each",
+          "skip_execution": false,
+          "source_array": "$activity.definition_activity_01M29S35GXW8I4wLhO3qdZln3qcHWUj4lZi.output.read_table_from_json$"
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01M37MOWREFTS2B8nfiQTCVCIBNeKL0D5Vu",
+            "name": "Select from Table",
+            "title": "read table for event id",
+            "type": "core.selectfromtable",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "columns": [
+                {
+                  "column_name": "id",
+                  "column_type": "string"
+                },
+                {
+                  "column_name": "createdDateTime",
+                  "column_type": "string"
+                }
+              ],
+              "continue_on_failure": true,
+              "display_name": "read table for event id",
+              "input_table": "$env.variable_01M37KYD0VY916hiApPSIv5QNWjmXbmv86d.env.variable_01M37KYD0VY916hiApPSIv5QNWjmXbmv86d$",
+              "number_of_rows": {
+                "all_rows": true,
+                "at_most": false
+              },
+              "persist_output": false,
+              "skip_execution": false,
+              "sorting": {
+                "no_sort": true,
+                "sort_by": false
+              },
+              "where_clause": "id == '$activity.definition_activity_01M29XV5I7BF567YboLQtSTqVf7yw33nr78.input.source_array[@].id$'"
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01M37S5Z7B68T7lCXX0lSXBv0zttrfRv57r",
+            "name": "Condition Block",
+            "title": "event ?",
+            "type": "logic.if_else",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "event ?",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "blocks": [
+              {
+                "unique_name": "definition_activity_01M37S6VOCI2B5gJY3jp6VwDgfofOQLJdVV",
+                "name": "Condition Branch",
+                "title": "Event is already in the table",
+                "type": "logic.condition_block",
+                "base_type": "activity",
+                "properties": {
+                  "condition": {
+                    "left_operand": "$activity.definition_activity_01M37MOWREFTS2B8nfiQTCVCIBNeKL0D5Vu.output.row_count$",
+                    "operator": "ne",
+                    "right_operand": 0
+                  },
+                  "continue_on_failure": false,
+                  "display_name": "Event is already in the table",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01M37S6WNST8R0qzcIY4Hotjj1x3ffCmftp",
+                "name": "Condition Branch",
+                "title": "not in table",
+                "type": "logic.condition_block",
+                "base_type": "activity",
+                "properties": {
+                  "condition": {
+                    "left_operand": "$activity.definition_activity_01M37MOWREFTS2B8nfiQTCVCIBNeKL0D5Vu.output.row_count$",
+                    "operator": "eq",
+                    "right_operand": 0
+                  },
+                  "continue_on_failure": false,
+                  "display_name": "not in table",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_01M2A6FP9VMGJ0Cqwny5jBcI4zHpoaTZT1m",
+                    "name": "Read Table from JSON",
+                    "title": "Read Table from JSON",
+                    "type": "corejava.read_table_from_json",
+                    "base_type": "activity",
+                    "properties": {
+                      "action_timeout": 180,
+                      "continue_on_failure": false,
+                      "display_name": "Read Table from JSON",
+                      "input_json": "$activity.definition_activity_01M29XV5I7BF567YboLQtSTqVf7yw33nr78.input.source_array[@].userStates$",
+                      "jsonpath_query": "$.",
+                      "persist_output": false,
+                      "populate_columns": false,
+                      "skip_execution": false,
+                      "table_columns": [
+                        {
+                          "column_name": "aadUserId",
+                          "column_type": "string"
+                        },
+                        {
+                          "column_name": "accountName",
+                          "column_type": "string"
+                        },
+                        {
+                          "column_name": "domainName",
+                          "column_type": "string"
+                        },
+                        {
+                          "column_name": "logonDateTime",
+                          "column_type": "string"
+                        },
+                        {
+                          "column_name": "logonIp",
+                          "column_type": "string"
+                        },
+                        {
+                          "column_name": "logonLocation",
+                          "column_type": "string"
+                        },
+                        {
+                          "column_name": "userPrincipalName",
+                          "column_type": "string"
+                        }
+                      ]
+                    },
+                    "object_type": "definition_activity"
+                  },
+                  {
+                    "unique_name": "definition_activity_01M37VD7A6JSD4OdPTPFDrUFJFN5WQs9oG8",
+                    "name": "Add Row to Table",
+                    "title": "Add Row to Table",
+                    "type": "core.addrowtotable",
+                    "base_type": "activity",
+                    "properties": {
+                      "action_timeout": 180,
+                      "continue_on_failure": false,
+                      "display_name": "Add Row to Table",
+                      "input_table": "$env.variable_01M37KYD0VY916hiApPSIv5QNWjmXbmv86d.env.variable_01M37KYD0VY916hiApPSIv5QNWjmXbmv86d$",
+                      "row": [
+                        {
+                          "key": "id",
+                          "type": "string",
+                          "value": "$activity.definition_activity_01M29XV5I7BF567YboLQtSTqVf7yw33nr78.input.source_array[@].id$"
+                        },
+                        {
+                          "key": "createdDateTime",
+                          "type": "string",
+                          "value": "$activity.definition_activity_01M29XV5I7BF567YboLQtSTqVf7yw33nr78.input.source_array[@].createdDateTime$"
+                        }
+                      ],
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity"
+                  },
+                  {
+                    "unique_name": "definition_activity_01M36I2CKAUX42CMypJ6xSiGRYQxb9QPjmH",
+                    "name": "Set Variables",
+                    "title": "zero Variables",
+                    "type": "core.set_multiple_variables",
+                    "base_type": "activity",
+                    "properties": {
+                      "continue_on_failure": false,
+                      "display_name": "zero Variables",
+                      "skip_execution": false,
+                      "variables_to_update": [
+                        {
+                          "variable_to_update": "$workflow.definition_workflow_01JNLK7TV4T9453gtbcU6ClkJaMzRzx4B5X.local.variable_workflow_01M36F4CWJ91Z5HEkumeEUJkQqexl44SLjX$",
+                          "variable_value_new": ""
+                        },
+                        {
+                          "variable_to_update": "$workflow.definition_workflow_01JNLK7TV4T9453gtbcU6ClkJaMzRzx4B5X.local.variable_workflow_01M36RCQIUR0I0Gc1f44HOZOhYtIpcjciFb$",
+                          "variable_value_new": ""
+                        }
+                      ]
+                    },
+                    "object_type": "definition_activity"
+                  },
+                  {
+                    "unique_name": "definition_activity_01M35XG4FUAE45NisZWRDHsPvyZcBu5DwgO",
+                    "name": "For Each",
+                    "title": "For Each",
+                    "type": "logic.for_each",
+                    "base_type": "activity",
+                    "properties": {
+                      "continue_on_failure": false,
+                      "display_name": "For Each",
+                      "skip_execution": false,
+                      "source_array": "$activity.definition_activity_01M2A6FP9VMGJ0Cqwny5jBcI4zHpoaTZT1m.output.read_table_from_json$"
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_01M363C8NYOLA13yf011BaCdCfntNKjt2YT",
+                        "name": "Set Variables",
+                        "title": "Create Variables",
+                        "type": "core.set_multiple_variables",
+                        "base_type": "activity",
+                        "properties": {
+                          "continue_on_failure": false,
+                          "display_name": "Create Variables",
+                          "skip_execution": false,
+                          "variables_to_update": [
+                            {
+                              "variable_to_update": "$workflow.definition_workflow_01JNLK7TV4T9453gtbcU6ClkJaMzRzx4B5X.local.variable_workflow_01M36F4CWJ91Z5HEkumeEUJkQqexl44SLjX$",
+                              "variable_value_new": "$workflow.definition_workflow_01JNLK7TV4T9453gtbcU6ClkJaMzRzx4B5X.local.variable_workflow_01M36F4CWJ91Z5HEkumeEUJkQqexl44SLjX$\n{\"type\":\"user\", \"value\":\"$activity.definition_activity_01M35XG4FUAE45NisZWRDHsPvyZcBu5DwgO.input.source_array[@].accountName$\"}\n{\"type\":\"user\", \"value\":\"$activity.definition_activity_01M35XG4FUAE45NisZWRDHsPvyZcBu5DwgO.input.source_array[@].userPrincipalName$\"}\n{\"type\":\"ip\", \"value\":\"$activity.definition_activity_01M35XG4FUAE45NisZWRDHsPvyZcBu5DwgO.input.source_array[@].logonIp$\"}"
+                            },
+                            {
+                              "variable_to_update": "$workflow.definition_workflow_01JNLK7TV4T9453gtbcU6ClkJaMzRzx4B5X.local.variable_workflow_01M36RRO01Q710pimCwtvn64Zh3lEHcTsGA$",
+                              "variable_value_new": "$activity.definition_activity_01M35XG4FUAE45NisZWRDHsPvyZcBu5DwgO.input.source_array[@].userPrincipalName$"
+                            },
+                            {
+                              "variable_to_update": "$workflow.definition_workflow_01JNLK7TV4T9453gtbcU6ClkJaMzRzx4B5X.local.variable_workflow_01M36RCQIUR0I0Gc1f44HOZOhYtIpcjciFb$",
+                              "variable_value_new": "$workflow.definition_workflow_01JNLK7TV4T9453gtbcU6ClkJaMzRzx4B5X.local.variable_workflow_01M36RCQIUR0I0Gc1f44HOZOhYtIpcjciFb$\n--------------------\n- Username :  $activity.definition_activity_01M35XG4FUAE45NisZWRDHsPvyZcBu5DwgO.input.source_array[@].userPrincipalName$\n- Logon Location : $activity.definition_activity_01M35XG4FUAE45NisZWRDHsPvyZcBu5DwgO.input.source_array[@].logonLocation$\n- Logon IP : $activity.definition_activity_01M35XG4FUAE45NisZWRDHsPvyZcBu5DwgO.input.source_array[@].logonIp$\n- Logon Date : $activity.definition_activity_01M35XG4FUAE45NisZWRDHsPvyZcBu5DwgO.input.source_array[@].logonDateTime$\n--------------------"
+                            }
+                          ]
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  },
+                  {
+                    "unique_name": "definition_activity_01M36IPEE51DG5D32sjpq0qocxM4uPRZ6hV",
+                    "name": "Replace String",
+                    "title": "Fix observables json 1",
+                    "type": "core.replacestring",
+                    "base_type": "activity",
+                    "properties": {
+                      "continue_on_failure": false,
+                      "display_name": "Fix observables json 1",
+                      "input_string": "$workflow.definition_workflow_01JNLK7TV4T9453gtbcU6ClkJaMzRzx4B5X.local.variable_workflow_01M36F4CWJ91Z5HEkumeEUJkQqexl44SLjX$",
+                      "replace_list": [
+                        {
+                          "replaced_string": "}\n{",
+                          "replacement_string": "},\n{"
+                        }
+                      ],
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity"
+                  },
+                  {
+                    "unique_name": "definition_activity_01M36JFUSL03Z0rVtkQNNibhwYC4thirKxT",
+                    "name": "Set Variables",
+                    "title": "Fix observables json 2",
+                    "type": "core.set_multiple_variables",
+                    "base_type": "activity",
+                    "properties": {
+                      "continue_on_failure": false,
+                      "display_name": "Fix observables json 2",
+                      "skip_execution": false,
+                      "variables_to_update": [
+                        {
+                          "variable_to_update": "$workflow.definition_workflow_01JNLK7TV4T9453gtbcU6ClkJaMzRzx4B5X.local.variable_workflow_01M36F4CWJ91Z5HEkumeEUJkQqexl44SLjX$",
+                          "variable_value_new": "[$activity.definition_activity_01M36IPEE51DG5D32sjpq0qocxM4uPRZ6hV.output.result_string$]"
+                        }
+                      ]
+                    },
+                    "object_type": "definition_activity"
+                  },
+                  {
+                    "unique_name": "definition_activity_01M2A1SIL5TSV6CLJIGIfCEIFI9tbw7e2Z3",
+                    "name": "Threat Response v2 - Generate Access Token",
+                    "title": "Threat Response v2 - Generate Access Token",
+                    "type": "workflow.atomic_workflow",
+                    "base_type": "subworkflow",
+                    "properties": {
+                      "continue_on_failure": false,
+                      "display_name": "Threat Response v2 - Generate Access Token",
+                      "runtime_user": {
+                        "target_default": true
+                      },
+                      "skip_execution": false,
+                      "target": {
+                        "use_workflow_target_group": true
+                      },
+                      "workflow_id": "definition_workflow_01KWJ2ISZTF2V6ibRYe7FZ7sOuycDOpnwss"
+                    },
+                    "object_type": "definition_activity"
+                  },
+                  {
+                    "unique_name": "definition_activity_01M29YT6RO4030B5jngkaVw9SBmqzWMJF02",
+                    "name": "Threat Response v2 - Create Casebook",
+                    "title": "Threat Response v2 - Create Casebook",
+                    "type": "workflow.atomic_workflow",
+                    "base_type": "subworkflow",
+                    "properties": {
+                      "continue_on_failure": false,
+                      "display_name": "Threat Response v2 - Create Casebook",
+                      "input": {
+                        "variable_workflow_01KVOGF4J481T6SCd7uh5fW7n47Q712nleJ": "$workflow.definition_workflow_01JNLK7TV4T9453gtbcU6ClkJaMzRzx4B5X.local.variable_workflow_01M36F4CWJ91Z5HEkumeEUJkQqexl44SLjX$",
+                        "variable_workflow_01KVOGF4J4FZC0jmaR42b1FbIzVZA19KbYL": "$workflow.definition_workflow_01JNLK7TV4T9453gtbcU6ClkJaMzRzx4B5X.local.variable_workflow_01M36RCQIUR0I0Gc1f44HOZOhYtIpcjciFb$",
+                        "variable_workflow_01KVOGF4J4IG81TQKFjqzLlnFJwiiNwXwSq": "$activity.definition_activity_01M2A1SIL5TSV6CLJIGIfCEIFI9tbw7e2Z3.output.variable_workflow_01KWJ2ISHZ9753Hoi7x9S5EPpucAbm53HHF$",
+                        "variable_workflow_01KVOGF4J4JL52xC9ZXdjYwHt2SvRYkArli": "Microsoft Graph Security Events - $activity.definition_activity_01M29XV5I7BF567YboLQtSTqVf7yw33nr78.input.source_array[@].title$",
+                        "variable_workflow_01KVOMXV9ERSV0M9j1WarflgSG8r5SpZ8b5": "$activity.definition_activity_01M29XV5I7BF567YboLQtSTqVf7yw33nr78.input.source_array[@].description$ - USER : $workflow.definition_workflow_01JNLK7TV4T9453gtbcU6ClkJaMzRzx4B5X.local.variable_workflow_01M36RRO01Q710pimCwtvn64Zh3lEHcTsGA$",
+                        "variable_workflow_01LFBYQJV9FZA2THdEQrMftLyGiiHP65nUq": "amber"
+                      },
+                      "runtime_user": {
+                        "target_default": true
+                      },
+                      "skip_execution": false,
+                      "target": {
+                        "override_workflow_target_group_criteria": true,
+                        "target_group": {
+                          "run_on_all_targets": false,
+                          "use_criteria": {
+                            "choose_target_using_algorithm": "choose_first_with_matching_criteria",
+                            "conditions": [
+                              {
+                                "left_operand": "$targetgroup.web-service endpoint.input.display_name$",
+                                "operator": "eq",
+                                "right_operand": "Private_CTIA_Target"
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      "workflow_id": "definition_workflow_01KVOGF574Y291CRwQLNB1TtzEHDNwyUx7O"
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "triggers": {
+    "triggerschedule_01M37ZKQ8URPA3IzDpPwX0Zp5RUyN8GVR6X": {
+      "workflow_id": "definition_workflow_01JNLK7TV4T9453gtbcU6ClkJaMzRzx4B5X",
+      "name": "Every hour",
+      "title": "",
+      "lowercase_name": "schedule.every_hour",
+      "type": "schedule",
+      "base_type": "trigger",
+      "ref_id": "schedule_01HW8M7A8CQK71LT9IHmr0kCTBJURhLdFDQ",
+      "version": "1.0.0",
+      "disabled": false,
+      "unique_name": "triggerschedule_01M37ZKQ8URPA3IzDpPwX0Zp5RUyN8GVR6X",
+      "object_type": "triggerschedule"
+    }
+  },
+  "schedules": {
+    "schedule_01HW8M7A8CQK71LT9IHmr0kCTBJURhLdFDQ": {
+      "unique_name": "schedule_01HW8M7A8CQK71LT9IHmr0kCTBJURhLdFDQ",
+      "name": "EVERY HOUR",
+      "type": "basic.schedule",
+      "base_type": "schedule",
+      "properties": {
+        "calendar": "calendar_recurring_1BMfMWvgiDhSjBQ7hTSyvz3NyVZ",
+        "timezone": "Etc/GMT+0",
+        "starttime": "01:00",
+        "interval_hours": 1,
+        "interval_minutes": 0,
+        "number_of_times": 23,
+        "display_name": "EVERY HOUR",
+        "description": ""
+      },
+      "version": "1.0.0",
+      "object_type": "schedule"
+    }
+  },
+  "target_groups": {
+    "target_group_01EJ0TQWPQWBD0qiWqClJKj9FOzwiZRfOFH": {
+      "unique_name": "target_group_01EJ0TQWPQWBD0qiWqClJKj9FOzwiZRfOFH",
+      "name": "Default TargetGroup",
+      "title": "Default TargetGroup",
+      "type": "generic.target_group",
+      "base_type": "target_group",
+      "version": "1.0.0",
+      "targets": [
+        {
+          "data_target_type": "web-service.endpoint",
+          "view_target_type": "web-service.endpoint",
+          "include_all_targets": true
+        },
+        {
+          "data_target_type": "email.smtp_endpoint",
+          "view_target_type": "email.smtp_endpoint",
+          "include_all_targets": true
+        },
+        {
+          "data_target_type": "terminal.endpoint",
+          "view_target_type": "terminal.endpoint",
+          "include_all_targets": true
+        }
+      ],
+      "object_type": "target_group"
+    }
+  },
+  "variables": {
+    "variable_01JFV6LDS7L9U3EIQg0vjnhzRP7PmMEA0Pb": {
+      "unique_name": "variable_01JFV6LDS7L9U3EIQg0vjnhzRP7PmMEA0Pb",
+      "properties": {
+        "value": "dfdbdc50-0ec5-45ce-b9c7-c54c9351e474",
+        "scope": "global",
+        "name": "Azure Tenant ID",
+        "type": "datatype.string",
+        "is_required": false,
+        "is_invisible": false
+      },
+      "object_type": "variable"
+    },
+    "variable_01JFVGETYFSLP5AvbmxSSUh4cusqoXzk3KJ": {
+      "unique_name": "variable_01JFVGETYFSLP5AvbmxSSUh4cusqoXzk3KJ",
+      "properties": {
+        "value": "*****",
+        "scope": "global",
+        "name": "Azure client_secret",
+        "type": "datatype.secure_string",
+        "is_required": false,
+        "is_invisible": false
+      },
+      "object_type": "variable"
+    },
+    "variable_01JFVH0T4SXO63PxYdYV5WFVdikwsvuGtC1": {
+      "unique_name": "variable_01JFVH0T4SXO63PxYdYV5WFVdikwsvuGtC1",
+      "properties": {
+        "value": "00c1b811-4906-417f-b463-606f7e9056b3",
+        "scope": "global",
+        "name": "Azure AD clientid",
+        "type": "datatype.string",
+        "is_required": false,
+        "is_invisible": false
+      },
+      "object_type": "variable"
+    },
+    "variable_01M37KYD0VY916hiApPSIv5QNWjmXbmv86d": {
+      "unique_name": "variable_01M37KYD0VY916hiApPSIv5QNWjmXbmv86d",
+      "schema_id": "tabletype_01M37K2RF4WTG4XvuUCIyMRh9phn0HiSiyl",
+      "properties": {
+        "value": [
+          {
+            "column_data": {
+              "createdDateTime": "2021-02-01T19:53:02.5647158Z",
+              "id": "cf095ce771dfd834f53fca554df4052588d9e24bb06f1975115b1cb7a4603319"
+            }
+          },
+          {
+            "column_data": {
+              "createdDateTime": "2021-02-01T19:51:07.1735185Z",
+              "id": "19127dacf36ba8f75eef0f91483fe727d2b574d3d860ad910f765913dcea391f"
+            }
+          },
+          {
+            "column_data": {
+              "createdDateTime": "2021-02-01T19:43:25.0207051Z",
+              "id": "0460a42e55e985af18a54f3bc869f65c21d59811bb9d50ebd0910b22ac739781"
+            }
+          },
+          {
+            "column_data": {
+              "createdDateTime": "2021-02-01T19:49:30.709802Z",
+              "id": "4889ce75cd9b7ef97362d93f2d21e25f74856a243a890dd5633118016622f8f1"
+            }
+          },
+          {
+            "column_data": {
+              "createdDateTime": "2021-02-01T18:18:12.261326Z",
+              "id": "2aa4bdf865ad2638eab9e3858d5588b0eed99e62c88afb2a00a21e10cc2274b1"
+            }
+          },
+          {
+            "column_data": {
+              "createdDateTime": "2021-02-01T17:54:20.0141532Z",
+              "id": "2623fd05073f053fd758bc530403f6c8915302c8ac3588d589f80918bf8376be"
+            }
+          },
+          {
+            "column_data": {
+              "createdDateTime": "2021-01-27T23:44:43.9523608Z",
+              "id": "d6e48e582fd04cea9724245d9a937c854e6911f6ffc9088c2f4e18de26ebc35a"
+            }
+          },
+          {
+            "column_data": {
+              "createdDateTime": "2021-02-03T21:25:58.7656825Z",
+              "id": "510deae523def56d05247f1cdd14c8b4f7a0b766e5b50de4989b05e18a237e02"
+            }
+          },
+          {
+            "column_data": {
+              "createdDateTime": "2021-02-04T09:23:12.46Z",
+              "id": "6204c2e0bbb1c7869b31cd0127e9e809624ccc05816fe1774762b28ea254e33e"
+            }
+          },
+          {
+            "column_data": {
+              "createdDateTime": "2021-02-04T22:05:38.1375691Z",
+              "id": "e8477b55ef77892c7bd3addb3594cc9de3661166ddea59135412600afa38287c"
+            }
+          },
+          {
+            "column_data": {
+              "createdDateTime": "2021-02-04T22:05:22.6207008Z",
+              "id": "89e88c0ca49317173f185b3113ae59bfb75f1e8245b0c83f118b0ea3051f1ed3"
+            }
+          },
+          {
+            "column_data": {
+              "createdDateTime": "2021-02-04T22:05:49.6071136Z",
+              "id": "17dca4324cf9155cd53df354530c055ec1d137060278a559b23e22681c3075ac"
+            }
+          },
+          {
+            "column_data": {
+              "createdDateTime": "2021-02-04T22:05:52.7277185Z",
+              "id": "3452d3c7b618000f41fe1a40cf90c4ccfaeb68e10f41b1db588d4d1ea2d22d16"
+            }
+          },
+          {
+            "column_data": {
+              "createdDateTime": "2021-02-04T22:04:56.1564945Z",
+              "id": "88cfdcb4270ec913a1df184c044b9e9bcba231e71e7d493b4f94e7a4d38abfed"
+            }
+          },
+          {
+            "column_data": {
+              "createdDateTime": "2021-02-04T22:04:49.418335Z",
+              "id": "baff83075b21c9e8ba2ffbb41b51aa3a5c9990897d838119b0916446c8329200"
+            }
+          },
+          {
+            "column_data": {
+              "createdDateTime": "2021-02-04T22:05:27.1066051Z",
+              "id": "1b19b2a8cfcf7ba22173a0c4aefdee2ad8f79ad7fcf3d604d93c96638c0bdf91"
+            }
+          },
+          {
+            "column_data": {
+              "createdDateTime": "2021-02-04T22:02:45.4528008Z",
+              "id": "1920b2d755998b76f542199fb078613c043f8393a0b5fb0e620afb822ba47fd8"
+            }
+          },
+          {
+            "column_data": {
+              "createdDateTime": "2021-02-04T22:01:14.3813702Z",
+              "id": "2b489928bd90a355cd011bab4fdb847b970a783bf774929a6619261b3685cbf2"
+            }
+          },
+          {
+            "column_data": {
+              "createdDateTime": "2021-02-05T09:38:42.534Z",
+              "id": "4de6b9e205fce209bcdf04a5e260b5e9572a3012712263ffc37d01f934448cc9"
+            }
+          },
+          {
+            "column_data": {
+              "createdDateTime": "2021-02-04T22:02:45.452Z",
+              "id": "805ADCF0-0144-3118-B024-80BBBF6CC9AC"
+            }
+          },
+          {
+            "column_data": {
+              "createdDateTime": "2021-02-04T22:08:57.723Z",
+              "id": "BC9A4460-125F-32BE-8337-85D811FDB34A"
+            }
+          },
+          {
+            "column_data": {
+              "createdDateTime": "2021-02-04T22:08:57.723Z",
+              "id": "98697C4C-BD92-3C7D-BFC7-E4388443583F"
+            }
+          },
+          {
+            "column_data": {
+              "createdDateTime": "2021-02-17T06:54:25.786Z",
+              "id": "FAAB2777-6744-345E-9D55-9C920EF52FF7"
+            }
+          },
+          {
+            "column_data": {
+              "createdDateTime": "2021-02-23T15:56:31.3849946Z",
+              "id": "c62ba9c84ba517d0a74f681f921466392a69674d3e5f378b7fcaf1760d05dfd8"
+            }
+          },
+          {
+            "column_data": {
+              "createdDateTime": "2021-02-24T13:26:05Z",
+              "id": "5FC7BAB3-04DB-3162-90D2-E07CB10752FF"
+            }
+          },
+          {
+            "column_data": {
+              "createdDateTime": "2021-02-24T19:02:23.6548276Z",
+              "id": "cd9dd86946558c9eae040816462d8c145134efc46de8e621c4cdf631d3510f60"
+            }
+          },
+          {
+            "column_data": {
+              "createdDateTime": "2021-03-18T12:28:29Z",
+              "id": "6C1B68A2-44D9-3E43-AE8E-E168EBBE48CA"
+            }
+          },
+          {
+            "column_data": {
+              "createdDateTime": "2021-03-15T20:18:23Z",
+              "id": "DEFD527B-ABF2-32DF-8DF5-BFA92B04AEBD"
+            }
+          },
+          {
+            "column_data": {
+              "createdDateTime": "2021-03-10T07:32:43Z",
+              "id": "82DA103C-288F-39F8-A6AE-C36BEE7BE22B"
+            }
+          },
+          {
+            "column_data": {
+              "createdDateTime": "2021-03-23T13:02:31Z",
+              "id": "1454B839-F7F1-3B39-ABD2-A911D8642F47"
+            }
+          },
+          {
+            "column_data": {
+              "createdDateTime": "2021-03-24T07:14:30Z",
+              "id": "AAF796CA-4D04-354B-B246-82CE1C588F95"
+            }
+          },
+          {
+            "column_data": {
+              "createdDateTime": "2021-03-25T07:37:15Z",
+              "id": "09A7C757-CECE-396E-A0E6-DE246A57B01A"
+            }
+          }
+        ],
+        "scope": "env",
+        "name": "Microsoft Graph Security Events",
+        "type": "datatype.table",
+        "is_required": false,
+        "is_invisible": false
+      },
+      "object_type": "variable"
+    }
+  },
+  "table_types": {
+    "tabletype_01M37K2RF4WTG4XvuUCIyMRh9phn0HiSiyl": {
+      "unique_name": "tabletype_01M37K2RF4WTG4XvuUCIyMRh9phn0HiSiyl",
+      "data_type": "datatype.tabletype",
+      "display_name": "Microsoft Graph Security Events",
+      "columns": [
+        {
+          "name": "createdDateTime",
+          "title": "createdDateTime",
+          "type": "string"
+        },
+        {
+          "name": "id",
+          "title": "id",
+          "type": "string"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    }
+  },
+  "atomic_workflows": [
+    "definition_workflow_01HQN7N57GLKN780LTDUabTblE3OpMPQVfx",
+    "definition_workflow_01KWJ2ISZTF2V6ibRYe7FZ7sOuycDOpnwss",
+    "definition_workflow_01KVOGF574Y291CRwQLNB1TtzEHDNwyUx7O"
+  ]
+}
